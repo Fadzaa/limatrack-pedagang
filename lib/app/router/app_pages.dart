@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_initial_view.dart';
+import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/verification_page_binding.dart';
 
 
 import '../pages/features/chat_page/chat_page_binding.dart';
@@ -21,7 +23,7 @@ class AppPages {
 
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH_PAGE;
+  static const INITIAL = Routes.VERIFICATION_INITIAL_PAGE;
 
   static final routes = [
     GetPage(
@@ -59,6 +61,18 @@ class AppPages {
       binding: OtpPageBinding(),
       transition: Transition.noTransition,
     ),
+    GetPage(
+      name: _Paths.VERIFICATION_INITIAL_PAGE,
+      page: () => const VerificationPageInitialView(),
+      binding: VerificationPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    // GetPage(
+    //   name: _Paths.VERIFICATION_INITIAL_PAGE,
+    //   page: () => const VerificationPageInitialView(),
+    //   binding: VerificationPageBinding(),
+    //   transition: Transition.noTransition,
+    // ),
 
 
   ];
