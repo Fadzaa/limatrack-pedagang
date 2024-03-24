@@ -30,9 +30,12 @@ class VerificationPageInitialView extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Veifikasi", style: tsTitleMedium.copyWith(
+                            Text("Verifikasi", style: tsTitleMedium.copyWith(
                               fontWeight: FontWeight.w600,
                             ),),
+
+                            const SizedBox(width: 5,),
+
                             Text("Pedagang", style: tsTitleMedium.copyWith(
                               fontWeight: FontWeight.w600,
                               color: primaryColor
