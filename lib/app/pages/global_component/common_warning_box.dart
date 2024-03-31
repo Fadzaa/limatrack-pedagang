@@ -7,17 +7,19 @@ import '../../../common/theme.dart';
 class CommonWarningBox extends StatelessWidget {
   const CommonWarningBox({
     super.key,
-    required this.text
+    required this.text,
+    this.colorType
   });
 
   final String text;
+  final Color? colorType;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-          color: warningColorLight,
+          color: colorType?.withOpacity(0.1) ?? warningColorLight,
           borderRadius: BorderRadius.circular(16)
       ),
 
@@ -25,7 +27,7 @@ class CommonWarningBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset(icWarning),
+          Icon(Icons.info_outline, color: colorType ?? warningColor, size: 20,),
 
           const SizedBox(width: 10,),
 
@@ -33,7 +35,7 @@ class CommonWarningBox extends StatelessWidget {
             child: Text(text,
               style: tsLabelLarge.copyWith(
                   fontWeight: FontWeight.w500,
-                  color: warningColor
+                  color: colorType ?? warningColor
               ),
             ),
           )
