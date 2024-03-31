@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:limatrack_pedagang/app/pages/features/manage_page/manage_page_binding.dart';
+import 'package:limatrack_pedagang/app/pages/features/manage_page/manage_page_view.dart';
 import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/tambah_jajan_page_binding.dart';
 import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/tambah_jajan_page_view.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_image.dart';
@@ -33,6 +35,7 @@ class AppPages {
       page: () => BottomNavigation(),
       bindings:  [
         HomePageBinding(),
+        ManagePageBinding(),
         ChatPageBinding(),
         ProfilePageBinding()
       ],
@@ -87,7 +90,5 @@ class AppPages {
       binding: TambahJajanPageBinding(),
       transition: Transition.noTransition,
     ),
-
-
   ];
 }
