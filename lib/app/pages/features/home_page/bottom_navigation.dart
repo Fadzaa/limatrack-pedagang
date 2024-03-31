@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:limatrack_pedagang/app/pages/features/chat_page/chat_page_view.dart';
+import 'package:limatrack_pedagang/app/pages/features/manage_page/manage_page_view.dart';
 
 import '../../../../common/constant.dart';
 import '../../../../common/theme.dart';
@@ -15,13 +17,13 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
-  final tabs = [
-    const HomePageView(),
-    Container(child: Text("Manage"),),
-    Container(child: Text("Chat"),),
-    const ProfilePageView()
+  final tabs = const [
+    HomePageView(),
+    ManagePageView(),
+    ChatPageView(),
+    ProfilePageView()
   ];
 
   @override

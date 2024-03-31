@@ -55,3 +55,6 @@ String onboardFood = '${svgImages}onboard_food.svg';
 String onboardLocation = '${svgImages}onboard_location.svg';
 String onboardSocmed = '${svgImages}onboard_socmed.svg';
 String notFoundExplore = '${svgImages}not_found_explore.svg';
+String notFoundHistory = '${svgImages}not_found_history.svg';
+String vectorPelanggan = '${svgImages}pelanggan_vector.svg';
+String vectorRating = '${svgImages}rating_vector.svg';
