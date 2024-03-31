@@ -1,20 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/items/item_pesanan_vertical.dart';
+import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/model/pesanan_data.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/common_warning_box.dart';
-import '../../../../common/constant.dart';
 import '../../../../common/theme.dart';
 import 'home_page_controller.dart';
-import 'widget/sections/advertise_section.dart';
-import 'widget/sections/nearest_section.dart';
-import 'widget/sections/recommendation_section.dart';
 
 class HomePageView extends GetView<HomePageController> {
   const HomePageView({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body:  SafeArea(
         child: SingleChildScrollView(
@@ -50,7 +50,10 @@ class ContainerContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now().toLocal();
+    String formattedDate = DateFormat('dd MMMM yyyy', 'id').format(now);
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       ),
@@ -59,7 +62,7 @@ class ContainerContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 
-          const SizedBox(height: 20,),
+          const Gap(20),
 
           Container(
               width: 50,
@@ -71,13 +74,74 @@ class ContainerContent extends StatelessWidget {
 
           ),
 
-          const AdvertiseSection(),
+          const Gap(30),
 
-          const RecommendationSection(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                  child: Text.rich(
+                  TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "List ",
+                          style: tsTitleMedium.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: blackColor
+                          ),
+                        ),
 
-          const SizedBox(height: 20),
+                        TextSpan(
+                          text: "Pesananmu\n",
+                          style: tsTitleMedium.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: primaryColor
+                          ),
+                        ),
 
-          const NearestSection()
+                        TextSpan(
+                          text: "Hari Ini ",
+                          style: tsTitleMedium.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: blackColor
+                          ),
+                        ),
+                      ]
+                  )
+                  )
+              ),
+
+              Container(
+                height: 30,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  color: secondaryColor,
+                  borderRadius: BorderRadius.circular(30)
+                ),
+                child: Center(
+                  child: Text(formattedDate, style: tsBodySmall.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600
+                  )),
+                ),
+              )
+            ],
+          ),
+
+          const Gap(20),
+
+          ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: pesanan_data.length,
+              itemBuilder: (context, index) =>
+                  ItemPesananVertical(
+                      name: pesanan_data[index].name,
+                      items: pesanan_data[index].items
+                  )
+          )
+
 
         ],
       ),

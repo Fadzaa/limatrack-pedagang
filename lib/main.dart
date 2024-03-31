@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'app/router/app_pages.dart';
 
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await initializeDateFormatting('id');
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
