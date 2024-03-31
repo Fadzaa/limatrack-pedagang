@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_pedagang/app/pages/features/manage_page/sections/list_jajanan_section.dart';
 import 'package:limatrack_pedagang/app/pages/features/manage_page/sections/promosi_jajanan_section.dart';
 import 'package:limatrack_pedagang/app/pages/features/manage_page/sections/rating_pelanggan_section.dart';
 
@@ -69,6 +70,10 @@ class ManagePageView extends GetView<ManagePageController> {
                 const Gap(15),
                 
                 const CommonWarningBox(text: "Menu yang dimasukkan akan tampil di detail warungmu diaplikasi pembeli"),
+
+                const Gap(20),
+
+                const ListJajananSection(),
 
                 const Gap(20),
 
