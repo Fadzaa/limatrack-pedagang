@@ -34,6 +34,8 @@ dependencies:
   pinput: ^4.0.0
   shimmer:
   google_fonts: ^6.2.1
+  dotted_border: ^2.1.0
+  gap: ^3.0.1
   flutter:
     sdk: flutter
 

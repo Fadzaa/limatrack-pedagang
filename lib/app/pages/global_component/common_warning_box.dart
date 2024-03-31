@@ -29,10 +29,12 @@ class CommonWarningBox extends StatelessWidget {
 
           const SizedBox(width: 10,),
 
-          Text(text,
-            style: tsLabelLarge.copyWith(
-                fontWeight: FontWeight.w500,
-                color: warningColor
+          Flexible(
+            child: Text(text,
+              style: tsLabelLarge.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: warningColor
+              ),
             ),
           )
         ],
