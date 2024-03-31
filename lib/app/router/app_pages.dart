@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
+import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/tambah_jajan_page_binding.dart';
+import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/tambah_jajan_page_view.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_image.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_initial_view.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/verification_page_binding.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/verification_page_view.dart';
-
-
 import '../pages/features/chat_page/chat_page_binding.dart';
 import '../pages/features/home_page/bottom_navigation.dart';
 import '../pages/features/home_page/home_page_binding.dart';
@@ -25,7 +25,7 @@ class AppPages {
 
   AppPages._();
 
-  static const INITIAL = Routes.VERIFICATION_PAGE;
+  static const INITIAL = Routes.TAMBAH_JAJAN_PAGE;
 
   static final routes = [
     GetPage(
@@ -79,6 +79,12 @@ class AppPages {
       name: _Paths.VERIFICATION_PAGE,
       page: () => const VerificationPageView(),
       binding: VerificationPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.TAMBAH_JAJAN_PAGE,
+      page: () => const TambahJajanPageview(),
+      binding: TambahJajanPageBinding(),
       transition: Transition.noTransition,
     ),
 
