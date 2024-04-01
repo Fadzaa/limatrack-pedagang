@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/common_button.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/items/item_image_grid.dart';
+import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/verification_page_controller.dart';
 import 'package:limatrack_pedagang/app/router/app_pages.dart';
 import 'package:limatrack_pedagang/common/constant.dart';
 import 'package:limatrack_pedagang/common/theme.dart';
 
-class VerificationPageImageView extends StatelessWidget {
+class VerificationPageImageView extends GetView<VerificationPageController> {
   const VerificationPageImageView({super.key});
 
   @override
