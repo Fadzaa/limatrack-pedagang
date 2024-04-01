@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:limatrack_pedagang/app/pages/global_component/bottom_sheet/status_dagangan_bottom_sheet.dart';
 
 import 'package:limatrack_pedagang/app/pages/global_component/common_warning_box.dart';
 import '../../../../common/theme.dart';
@@ -150,7 +151,7 @@ class ContainerContent extends StatelessWidget {
   }
 }
 
-class ContainerStatus extends StatelessWidget {
+class ContainerStatus extends GetView<HomePageController> {
   const ContainerStatus({super.key});
 
   @override
@@ -250,41 +251,44 @@ class ContainerStatus extends StatelessWidget {
 
               const Gap(20),
 
-              Container(
-                height: 35,
-                width: Get.width * 0.4,
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
+              InkWell(
+                onTap: () => statusDaganganBottomSheet(controller),
+                child: Container(
+                  height: 35,
+                  width: Get.width * 0.4,
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
 
-                child: Row(
-                  children: [
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: successColor,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 7,
-                            offset: const Offset(0, 3), // changes position of shadow
-                          ),
-                        ]
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: successColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 7,
+                                offset: const Offset(0, 3), // changes position of shadow
+                              ),
+                            ]
+                        ),
+
                       ),
 
-                    ),
+                      const Gap(10),
 
-                    const Gap(10),
-
-                    Text("Warung Buka", style: tsBodySmall.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),)
-                  ],
+                      Text("Warung Buka", style: tsBodySmall.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),)
+                    ],
+                  ),
                 ),
               )
             ],
