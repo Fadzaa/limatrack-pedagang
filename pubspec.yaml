@@ -33,6 +33,7 @@ dependencies:
   get: ^4.6.6
   pinput: ^4.0.0
   image_picker: ^1.0.7
+  file_picker: ^8.0.0+1
   shimmer:
   intl:
   google_fonts: ^6.2.1

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:limatrack_pedagang/app/pages/global_component/common_button.dart
 import 'package:limatrack_pedagang/app/pages/global_component/common_textfield_secondary.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/common_warning_box.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/verification_page_controller.dart';
+import 'package:limatrack_pedagang/app/router/app_pages.dart';
 import 'package:limatrack_pedagang/common/constant.dart';
 import 'package:limatrack_pedagang/common/theme.dart';
 
@@ -16,6 +19,7 @@ class VerificationPageView extends GetView<VerificationPageController> {
   @override
   Widget build(BuildContext context) {
     List<String> daerah_dagang = ["Kudus", "Pati", "Rembang"];
+    RxString bannerImagePath = "".obs;
 
     return Scaffold(
         backgroundColor: baseColor,
@@ -48,55 +52,68 @@ class VerificationPageView extends GetView<VerificationPageController> {
 
                         HeadingForm(
                             heading: "Banner Warung",
-                            widget: Container(
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: secondaryColor.withOpacity(0.05),
-                                borderRadius: BorderRadius.circular(10)
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.add, color: secondaryColor, size: 20),
+                            widget: InkWell(
+                              onTap: () => controller.pickImage(bannerImagePath),
+                              child: Obx(() => Container(
+                                height: bannerImagePath.value.isNotEmpty ? 200 : 50,
+                                decoration: BoxDecoration(
+                                  color: secondaryColor.withOpacity(0.05),
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: bannerImagePath.value.isNotEmpty ? DecorationImage(
+                                    image: FileImage(File(bannerImagePath.value)),
+                                    fit: BoxFit.cover
+                                  ) : null
+                                ),
+                                child: bannerImagePath.value.isNotEmpty ? null : Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.add, color: secondaryColor, size: 20),
 
-                                  const SizedBox(width: 10,),
+                                      const SizedBox(width: 10,),
 
-                                  Text("Tambahkan Gambar", style: tsBodySmall.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      color: secondaryColor
-                                  ),)
-                                ]
+                                      Text("Tambah Banner", style: tsBodySmall.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        color: secondaryColor
+                                      ),)
+                                    ]
+                                  )
+                                )
+                               )
                               )
                             )
                         ),
 
                         HeadingForm(
                             heading: "Isi Jajanan",
-                            widget: DottedBorder(
-                              color: greyColor.withOpacity(0.8),
-                              dashPattern: [8],
-                              borderType: BorderType.RRect,
-                              radius: const Radius.circular(10),
-                              child: Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10)
-                                  ),
-                                  child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        const Icon(Icons.add, color: greyColor, size: 20),
+                            widget: InkWell(
+                              onTap: () => Get.toNamed(Routes.TAMBAH_JAJAN_PAGE),
+                              child: DottedBorder(
+                                color: greyColor.withOpacity(0.8),
+                                dashPattern: [8],
+                                borderType: BorderType.RRect,
+                                radius: const Radius.circular(10),
+                                child: Container(
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10)
+                                    ),
+                                    child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(Icons.add, color: greyColor, size: 20),
 
-                                        const SizedBox(width: 10,),
+                                          const SizedBox(width: 10,),
 
-                                        Text("Tambah Jajanan", style: tsBodySmall.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                            color: greyColor
-                                        ),)
-                                      ]
-                                  )
+                                          Text("Tambah Jajanan", style: tsBodySmall.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: greyColor
+                                          ),)
+                                        ]
+                                    )
+                                ),
                               ),
                             )
                         ),
@@ -107,24 +124,27 @@ class VerificationPageView extends GetView<VerificationPageController> {
                             Expanded(
                               child: HeadingForm(
                                   heading: "Waktu Buka",
-                                  widget: Container(
-                                    height: 50,
-                                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10)
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Text("07.00", style: tsBodyMedium.copyWith(
-                                          color: greyColor,
-                                          fontWeight: FontWeight.w600
-                                        ),),
+                                  widget: InkWell(
+                                    onTap: () => controller.onTimePickerSelected(controller.currentTime, controller.openTimeString),
+                                    child: Container(
+                                      height: 50,
+                                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Obx(() => Text(controller.openTimeString.value, style: tsBodyMedium.copyWith(
+                                                color: greyColor,
+                                                fontWeight: FontWeight.w600
+                                            ),),),
 
-                                        const Icon(Icons.watch_later_rounded, color: secondaryColor, size: 20)
-                                      ]
+                                            const Icon(Icons.watch_later_rounded, color: secondaryColor, size: 20)
+                                          ]
+                                      ),
                                     ),
                                   )
                               ),
@@ -134,25 +154,28 @@ class VerificationPageView extends GetView<VerificationPageController> {
 
                             Expanded(
                               child: HeadingForm(
-                                  heading: "Waktu Buka",
-                                  widget: Container(
-                                    height: 50,
-                                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10)
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Text("07.00", style: tsBodyMedium.copyWith(
-                                          color: greyColor,
-                                          fontWeight: FontWeight.w600
-                                        ),),
+                                  heading: "Waktu Tutup",
+                                  widget: InkWell(
+                                    onTap: () => controller.onTimePickerSelected(controller.currentTime, controller.closeTimeString),
+                                    child: Container(
+                                      height: 50,
+                                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Obx(() => Text(controller.closeTimeString.value, style: tsBodyMedium.copyWith(
+                                              color: greyColor,
+                                              fontWeight: FontWeight.w600
+                                          ),),),
 
-                                        const Icon(Icons.watch_later_rounded, color: secondaryColor, size: 20)
-                                      ]
+                                          const Icon(Icons.watch_later_rounded, color: secondaryColor, size: 20)
+                                        ]
+                                      ),
                                     ),
                                   )
                               ),
@@ -210,22 +233,36 @@ class VerificationPageView extends GetView<VerificationPageController> {
                         Row(
                           children: [
                             Expanded(
-                              child: Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: secondaryColor.withOpacity(0.05),
-                                  borderRadius: BorderRadius.circular(10)
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Icon(Icons.image, color: secondaryColor, size: 20),
+                              child: InkWell(
+                                onTap: () => controller.pickImage(controller.filePathImage),
+                                child: Container(
+                                  height: 50,
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  decoration: BoxDecoration(
+                                    color: secondaryColor.withOpacity(0.05),
+                                    borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.image, color: secondaryColor, size: 20),
 
-                                    const Gap(10),
+                                      const Gap(10),
 
-                                    Text("Gambar", style: tsBodySmall.copyWith(fontWeight: FontWeight.w600, color: secondaryColor),)
-                                  ],
+                                      Obx(() => Flexible(
+                                        child: Text(
+                                          controller.filePathImage.isNotEmpty ?
+                                          controller.filePathImage.value.split("/").last :
+                                              "Gambar"
+                                          ,
+                                          style: tsBodySmall.copyWith(fontWeight: FontWeight.w600, color: secondaryColor),
+                                          overflow: TextOverflow.ellipsis,
+                                          ),
+                                      ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -233,23 +270,37 @@ class VerificationPageView extends GetView<VerificationPageController> {
                             const Gap(20),
 
                             Expanded(
-                              child: Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: secondaryColor.withOpacity(0.05),
-                                    borderRadius: BorderRadius.circular(10)
-                                ),
+                              child: InkWell(
+                                onTap: () => controller.pickFile(controller.filePathDocument),
+                                child: Container(
+                                  height: 50,
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  decoration: BoxDecoration(
+                                      color: secondaryColor.withOpacity(0.05),
+                                      borderRadius: BorderRadius.circular(10)
+                                  ),
 
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Icon(Icons.document_scanner, color: secondaryColor, size: 20),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.document_scanner, color: secondaryColor, size: 20),
 
-                                    const Gap(10),
+                                      const Gap(10),
 
-                                    Text("Dokumen", style: tsBodySmall.copyWith(fontWeight: FontWeight.w600, color: secondaryColor),)
-                                  ],
+                                      Obx(() => Flexible(
+                                        child: Text(
+                                          controller.filePathDocument.isNotEmpty ?
+                                          controller.filePathDocument.value.split("/").last :
+                                          "Dokumen"
+                                          ,
+                                          style: tsBodySmall.copyWith(fontWeight: FontWeight.w600, color: secondaryColor),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
