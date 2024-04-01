@@ -65,7 +65,7 @@ class LoginPageView extends GetView<LoginPageController> {
                 const SizedBox(height: 25,),
                 
                 CommonButton(
-                    text: "Masuk", onPressed: controller.validateForm
+                    text: "Masuk", onPressed: controller.validateForm, height: 45,
                 ),
                 
                 Container(
@@ -88,7 +88,7 @@ class LoginPageView extends GetView<LoginPageController> {
                     const SizedBox(width: 3,),
 
                     InkWell(
-                      onTap: () => Get.toNamed(Routes.LOGIN_PAGE),
+                      onTap: () => Get.toNamed(Routes.REGISTER_PAGE),
                       child: Text("Daftar", style: tsBodyMedium.copyWith(
                         color: primaryColor,
                         fontWeight: FontWeight.w600,

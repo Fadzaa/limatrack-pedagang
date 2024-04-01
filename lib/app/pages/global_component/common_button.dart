@@ -30,7 +30,7 @@ class CommonButton extends StatelessWidget {
           backgroundColor: primaryColor,
           fixedSize: Size(width ?? double.maxFinite, height ?? 0),
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius ?? 16)
+              borderRadius: BorderRadius.circular(borderRadius ?? 10)
           ),
           disabledBackgroundColor: const Color(0xFFBABABA)
         ),
@@ -59,11 +59,14 @@ class CommonButtonGoogle extends StatelessWidget {
         onPressed: () => null,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
+          shadowColor: Colors.black.withOpacity(0.5),
+          foregroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 20),
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16)
+              borderRadius: BorderRadius.circular(10)
           ),
-          elevation: 2
+          elevation: 1.2
         ),
 
 
@@ -105,9 +108,11 @@ class CommonButtonOutline extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 20),
+          fixedSize: const Size(double.maxFinite, 50),
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(10),
               side: const BorderSide(
                 color: primaryColor,
                 width: 1

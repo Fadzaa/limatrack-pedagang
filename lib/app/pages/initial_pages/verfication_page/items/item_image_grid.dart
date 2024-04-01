@@ -16,9 +16,9 @@ class ItemImageGrid extends StatelessWidget {
 
       color: const Color(0xFF707070).withOpacity(0.2),
       strokeWidth: 1,
-      dashPattern: [6],
+      dashPattern: [10],
       borderType: BorderType.RRect,
-      radius: const Radius.circular(20),
+      radius: const Radius.circular(10),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +31,7 @@ class ItemImageGrid extends StatelessWidget {
 
             const SizedBox(height: 5,),
 
-            const Icon(Icons.add)
+            const Icon(Icons.add, color: greyColor,)
           ],
         ),
       )

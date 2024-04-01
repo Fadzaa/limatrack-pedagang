@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/common_button.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/items/item_image_grid.dart';
+import 'package:limatrack_pedagang/app/router/app_pages.dart';
 import 'package:limatrack_pedagang/common/constant.dart';
 import 'package:limatrack_pedagang/common/theme.dart';
 
@@ -16,10 +19,11 @@ class VerificationPageImageView extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Image.asset(logoSecondary),
+
+                    Gap(Get.height * 0.05),
 
                     Column(
                       children: [
@@ -61,7 +65,9 @@ class VerificationPageImageView extends StatelessWidget {
                       ],
                     ),
 
-                    CommonButton(text: "Lanjut Verifikasi", onPressed: () => null, height: 50,)
+                    const Spacer(),
+
+                    CommonButton(text: "Lanjut Verifikasi", onPressed: () => Get.toNamed(Routes.VERIFICATION_PAGE), height: 50,)
 
 
                   ]
