@@ -32,13 +32,13 @@ class RegisterPageView extends GetView<RegisterPageController> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: "Buat Akun dan \nJelajahi Lima",
+                        text: "Buat Akun dan Jadilah\nPedagang ",
                         style: tsTitleMedium.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       TextSpan(
-                        text: "Track.",
+                        text: "Bijak",
                         style: tsTitleMedium.copyWith(
                           fontWeight: FontWeight.w600,
                           color: primaryColor,
@@ -79,7 +79,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                 const SizedBox(height: 25,),
                 
                 CommonButton(
-                    text: "Daftar Sekarang", onPressed: controller.validateForm
+                    text: "Daftar Sekarang", onPressed: controller.validateForm, height: 45,
                 ),
                 
                 Container(
@@ -102,7 +102,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                     const SizedBox(width: 3,),
 
                     InkWell(
-                      onTap: () => Get.toNamed(Routes.REGISTER_PAGE),
+                      onTap: () => Get.toNamed(Routes.LOGIN_PAGE),
                       child: Text("Masuk", style: tsBodyMedium.copyWith(
                         color: primaryColor,
                         fontWeight: FontWeight.w600,
