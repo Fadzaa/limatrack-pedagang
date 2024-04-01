@@ -118,7 +118,8 @@ class RegisterPageView extends GetView<RegisterPageController> {
               ]
             ),
           )
-      )
+      ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }

@@ -104,7 +104,8 @@ class LoginPageView extends GetView<LoginPageController> {
               ]
             ),
           )
-      )
+      ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
