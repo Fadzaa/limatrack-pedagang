@@ -5,6 +5,7 @@ import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/tambah_j
 import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/tambah_jajan_page_view.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_image.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_initial_view.dart';
+import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_success_view.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/verification_page_binding.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/verification_page_view.dart';
 import '../pages/features/chat_page/chat_page_binding.dart';
@@ -76,6 +77,11 @@ class AppPages {
       name: _Paths.VERIFICATION_IMAGE_PAGE,
       page: () => const VerificationPageImageView(),
       binding: VerificationPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.VERIFICATION_SUCCESS_PAGE,
+      page: () => const VerificationPageSuccessView(),
       transition: Transition.noTransition,
     ),
     GetPage(
