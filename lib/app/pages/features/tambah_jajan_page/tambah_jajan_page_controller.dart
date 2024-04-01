@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class TambahJajanPageController extends GetxController {
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  RxString filePathImage = ''.obs;
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
+  Future<void> pickImage(RxString imagePath) async {
+    final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      imagePath.value = pickedImage.path;
+    }
   }
 
 

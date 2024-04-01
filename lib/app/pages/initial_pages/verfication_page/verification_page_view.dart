@@ -73,7 +73,7 @@ class VerificationPageView extends GetView<VerificationPageController> {
 
                                       const SizedBox(width: 10,),
 
-                                      Text("Tambah Banner", style: tsBodySmall.copyWith(
+                                      Text("Tambah Gambar", style: tsBodySmall.copyWith(
                                         fontWeight: FontWeight.w600,
                                         color: secondaryColor
                                       ),)
