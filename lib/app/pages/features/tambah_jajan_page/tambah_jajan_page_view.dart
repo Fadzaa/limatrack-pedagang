@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/common_button.dart';
@@ -50,25 +52,35 @@ class TambahJajanPageview extends GetView<TambahJajanPageController> {
 
               HeadingForm(
                   heading: "Gambar Jajanan",
-                  widget: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: secondaryColor.withOpacity(0.05),
-                          borderRadius: BorderRadius.circular(10)
-                      ),
-                      child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.add, color: secondaryColor, size: 20),
+                  widget: InkWell(
+                      onTap: () => controller.pickImage(controller.filePathImage),
+                      child: Obx(() => Container(
+                          height: controller.filePathImage.value.isNotEmpty ? 200 : 50,
+                          decoration: BoxDecoration(
+                              color: secondaryColor.withOpacity(0.05),
+                              borderRadius: BorderRadius.circular(10),
+                              image: controller.filePathImage.value.isNotEmpty ? DecorationImage(
+                                  image: FileImage(File(controller.filePathImage.value)),
+                                  fit: BoxFit.cover
+                              ) : null
+                          ),
+                          child: controller.filePathImage.value.isNotEmpty ? null : Center(
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Icon(Icons.add, color: secondaryColor, size: 20),
 
-                            const SizedBox(width: 10,),
+                                    const SizedBox(width: 10,),
 
-                            Text("Tambahkan Gambar", style: tsBodySmall.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: secondaryColor
-                            ),)
-                          ]
+                                    Text("Tambah Gambar", style: tsBodySmall.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        color: secondaryColor
+                                    ),)
+                                  ]
+                              )
+                          )
+                      )
                       )
                   )
               ),

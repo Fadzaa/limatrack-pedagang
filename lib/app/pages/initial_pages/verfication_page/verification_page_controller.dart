@@ -36,8 +36,6 @@ class VerificationPageController extends GetxController {
   }
 
   Future<void> pickFile(RxString filePath) async {
-    //if path image extension png jpg
-    //if path document pdf doc docx
     final pickedFile = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf', 'doc', 'docx'],
