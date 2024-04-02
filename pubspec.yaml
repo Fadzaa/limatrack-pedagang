@@ -39,6 +39,8 @@ dependencies:
   google_fonts: ^6.2.1
   dotted_border: ^2.1.0
   gap: ^3.0.1
+  google_maps_flutter:
+  location:
   flutter:
     sdk: flutter
 
