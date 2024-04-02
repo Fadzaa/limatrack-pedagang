@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/bottom_sheet/status_dagangan_bottom_sheet.dart';
 
@@ -27,9 +28,12 @@ class HomePageView extends GetView<HomePageController> {
                   Container(
                     color: Colors.grey[200],
                     height: MediaQuery.of(context).size.height * 0.7,
-                    child: Center(
-                      child: Text("Ini Map"),
-                    ),
+                    child: GoogleMap(
+                        initialCameraPosition: const CameraPosition(
+                          target: LatLng(-6.966667, 110.416664),
+                          zoom: 15,
+                        ),
+                    )
                   ),
 
                   const ContainerStatus()
