@@ -15,6 +15,7 @@ class ManagePageController extends GetxController {
   @override
   void onInit() {
     showCurrentPedagang();
+    update();
     super.onInit();
   }
 
