@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_pedagang/app/pages/global_component/loading_overlay.dart';
 import 'package:pinput/pinput.dart';
 
 
@@ -31,103 +32,108 @@ class OtpPageView extends GetView<OtpPageController> {
     return Scaffold(
       backgroundColor: baseColor,
       body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(logoSecondary)
-                ),
-
-                const SizedBox(height: 30,),
-
-                Text(
-                  "Kode Verifikasi Email",
-                  style: tsTitleMedium.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-
-                Text(
-                  "Kode akan dikirimkan melalui inbox email",
-                  style: tsBodySmall.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-
-
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 30),
-                  child: Pinput(
-                    length: 4,
-                    controller: controller.otpNumberController,
-                    defaultPinTheme: defaultPinTheme,
-                    separatorBuilder: (index) =>
-                    const SizedBox(width: 8),
-                    validator: (value) {
-                      // return value == '2222' ? null : 'Pin is incorrect';
-                    },
-                    // onClipboardFound: (value) {
-                    //   pinController.setText(value);
-                    // },
-                    hapticFeedbackType: HapticFeedbackType.lightImpact,
-                    // onCompleted: _forgotLoginState.onTacNumberChanged,
-                    // onChanged: _forgotLoginState.onTacNumberChanged,
-                    showCursor: true,
-                    cursor: Center(
-                      child: Container(
-                          margin: const EdgeInsets.only(),
-                          width: 1,
-                          height: 22,
-                          color: Colors.grey),
-                    ),
-                    focusedPinTheme: defaultPinTheme.copyWith(
-                      decoration: defaultPinTheme.decoration!
-                          .copyWith(
-                        borderRadius:
-                        BorderRadius.circular(12),
-                        border: Border.all(color: primaryColor),
+          child: Obx(() => LoadingOverlay(
+              isLoading: controller.isLoading.value,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Align(
+                          alignment: Alignment.center,
+                          child: Image.asset(logoSecondary)
                       ),
-                    ),
-                    submittedPinTheme: defaultPinTheme
-                  ),
+
+                      const SizedBox(height: 30,),
+
+                      Text(
+                        "Kode Verifikasi Email",
+                        style: tsTitleMedium.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+
+                      Text(
+                        "Kode akan dikirimkan melalui inbox email",
+                        style: tsBodySmall.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+
+
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 30),
+                        child: Pinput(
+                            length: 6,
+                            controller: controller.otpNumberController,
+                            defaultPinTheme: defaultPinTheme,
+                            separatorBuilder: (index) =>
+                            const SizedBox(width: 8),
+                            validator: (value) {
+                              // return value == '2222' ? null : 'Pin is incorrect';
+                            },
+                            // onClipboardFound: (value) {
+                            //   pinController.setText(value);
+                            // },
+                            hapticFeedbackType: HapticFeedbackType.lightImpact,
+                            onCompleted: (value) {
+                              controller.register();
+                            },
+                            // onChanged: _forgotLoginState.onTacNumberChanged,
+                            showCursor: true,
+                            cursor: Center(
+                              child: Container(
+                                  margin: const EdgeInsets.only(),
+                                  width: 1,
+                                  height: 22,
+                                  color: Colors.grey),
+                            ),
+                            focusedPinTheme: defaultPinTheme.copyWith(
+                              decoration: defaultPinTheme.decoration!
+                                  .copyWith(
+                                borderRadius:
+                                BorderRadius.circular(12),
+                                border: Border.all(color: primaryColor),
+                              ),
+                            ),
+                            submittedPinTheme: defaultPinTheme
+                        ),
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Kode akan hangus dalam", style: tsBodyMedium),
+
+                          const SizedBox(width: 3,),
+
+                          InkWell(
+                            onTap: () => Get.toNamed(Routes.LOGIN_PAGE),
+                            child: Text("00.00", style: tsBodyMedium.copyWith(
+                              color: primaryColor,
+                              fontWeight: FontWeight.w600,
+                            ),),
+                          ),
+
+                        ],
+                      ),
+
+                      const SizedBox(height: 30,),
+
+                      CommonButton(
+                        text: "Verifikasi", onPressed: () => controller.register(), height: 50,
+                      ),
+
+                      const SizedBox(height: 10,),
+
+                      CommonButtonOutline(
+                          text: "Kirim Ulang Email", onPressed: () => null
+                      ),
+
+                    ]
                 ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Kode akan hangus dalam", style: tsBodyMedium),
-
-                    const SizedBox(width: 3,),
-
-                    InkWell(
-                      onTap: () => Get.toNamed(Routes.LOGIN_PAGE),
-                      child: Text("00.00", style: tsBodyMedium.copyWith(
-                        color: primaryColor,
-                        fontWeight: FontWeight.w600,
-                      ),),
-                    ),
-
-                  ],
-                ),
-
-                const SizedBox(height: 30,),
-
-                CommonButton(
-                    text: "Verifikasi", onPressed: () => Get.toNamed(Routes.VERIFICATION_INITIAL_PAGE), height: 50,
-                ),
-
-                const SizedBox(height: 10,),
-
-                CommonButtonOutline(
-                    text: "Kirim Ulang Email", onPressed: () => null
-                ),
-
-              ]
-            ),
-          )
+              )
+          ))
       )
     );
   }

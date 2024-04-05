@@ -1,9 +1,17 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:dio/dio.dart' as dio;
+
 import 'package:image_picker/image_picker.dart';
+import 'package:limatrack_pedagang/app/api/pedagang/pedagang_service.dart';
+
+import '../../../router/app_pages.dart';
 
 class VerificationPageController extends GetxController {
+  late PedagangService pedagangService;
+  RxBool isLoading = false.obs;
+
   RxString dropdownValue = "Kudus".obs;
 
   DateTime currentTime = DateTime.now();
@@ -11,8 +19,44 @@ class VerificationPageController extends GetxController {
   RxString closeTimeString = '21:00'.obs;
 
 
-  RxString filePathImage = ''.obs;
+  RxList<String> imagePaths = List.generate(4, (index) => '').obs;
+
+  RxString imagePathJajan = ''.obs;
   RxString filePathDocument = ''.obs;
+
+
+  @override
+  void onInit() {
+    super.onInit();
+    pedagangService = PedagangService();
+  }
+
+  Future<void> imageVerifikasi() async {
+    try {
+      isLoading(true);
+
+      dio.FormData formData = dio.FormData.fromMap({
+        'image_1': await dio.MultipartFile.fromFile(imagePaths[0]),
+        'image_2': await dio.MultipartFile.fromFile(imagePaths[1]),
+        'image_3': await dio.MultipartFile.fromFile(imagePaths[2]),
+        'image_4': await dio.MultipartFile.fromFile(imagePaths[3]),
+      });
+   
+
+      final response = await pedagangService.imageVerifikasi(formData);
+
+      Get.snackbar("Image Verification Success", "Your Image Verification Success" + response.data.toString());
+      Get.offAllNamed(Routes.VERIFICATION_PAGE);
+
+    } catch (e) {
+      isLoading(false);
+      Get.snackbar("Image Verification Failed", "Network Error" + e.toString());
+    }finally {
+      isLoading(false);
+    }
+  }
+
+
 
 
   void onTimePickerSelected(DateTime dateTime, RxString timeString) {
@@ -55,6 +99,8 @@ class VerificationPageController extends GetxController {
 
     if (pickedImage != null) {
       imagePath.value = pickedImage.path;
+      imagePaths[imagePaths.indexWhere((element) => element == '')] = pickedImage.path;
+      print(imagePaths);
     }
   }
 
@@ -66,11 +112,6 @@ class VerificationPageController extends GetxController {
 
 
 
-  @override
-  void onInit() {
-    super.onInit();
-
-  }
 
 
 }
