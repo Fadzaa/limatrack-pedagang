@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:get/get_rx/get_rx.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:limatrack_pedagang/app/api/pedagang/pedagang_service.dart';
@@ -10,6 +11,7 @@ import '../../../router/app_pages.dart';
 
 class VerificationPageController extends GetxController {
   late PedagangService pedagangService;
+   TextEditingController namaWarungController = TextEditingController();
   RxBool isLoading = false.obs;
 
   RxString dropdownValue = "Kudus".obs;
@@ -19,10 +21,12 @@ class VerificationPageController extends GetxController {
   RxString closeTimeString = '21:00'.obs;
 
 
+
   RxList<String> imagePaths = List.generate(4, (index) => '').obs;
 
   RxString imagePathJajan = ''.obs;
   RxString filePathDocument = ''.obs;
+  RxInt isSelectedMethod = 0.obs;
 
 
   @override
@@ -56,6 +60,34 @@ class VerificationPageController extends GetxController {
     }
   }
 
+  Future<void> storePedagang() async {
+    try {
+      isLoading(true);
+
+
+
+      dio.FormData formData = dio.FormData.fromMap({
+        'nama_warung': namaWarungController.text,
+        'jam_buka': openTimeString.value,
+        'jam_tutup': closeTimeString.value,
+        'daerah_dagang': dropdownValue.value,
+        'banner': await dio.MultipartFile.fromFile(imagePathJajan.value),
+        'dokumen_sertifikat_halal': await dio.MultipartFile.fromFile(isSelectedMethod.value == 0 ? imagePathJajan.value : filePathDocument.value),
+      });
+
+
+      final response = await pedagangService.storePedagang(formData);
+
+      Get.snackbar("Store Pedagang Success", "Berhasil Mendaftarkan diri sebagai Pedagang" + response.data.toString());
+      Get.offAllNamed(Routes.HOME_PAGE);
+
+    } catch (e) {
+      isLoading(false);
+      Get.snackbar("Store Pedagang Failed", "Network Error" + e.toString());
+    }finally {
+      isLoading(false);
+    }
+  }
 
 
 
@@ -87,6 +119,7 @@ class VerificationPageController extends GetxController {
 
     if (pickedFile != null) {
       filePath.value = pickedFile.files.single.path!;
+      isSelectedMethod.value = 1;
     }
 
 
@@ -100,6 +133,7 @@ class VerificationPageController extends GetxController {
     if (pickedImage != null) {
       imagePath.value = pickedImage.path;
       imagePaths[imagePaths.indexWhere((element) => element == '')] = pickedImage.path;
+      isSelectedMethod.value = 0;
       print(imagePaths);
     }
   }

@@ -46,7 +46,7 @@ class VerificationPageView extends GetView<VerificationPageController> {
 
                         CommonTextFieldSecondary(
                             heading: "Nama Warung",
-                            controller: TextEditingController(),
+                            controller: controller.namaWarungController,
                             hintText: "Cth : Warung Obenk"
                         ),
 
@@ -309,7 +309,7 @@ class VerificationPageView extends GetView<VerificationPageController> {
 
                         const Gap(40),
 
-                        CommonButton(text: "Verifikasi", onPressed: () => Get.toNamed(Routes.VERIFICATION_SUCCESS_PAGE), height: 50,)
+                        CommonButton(text: "Verifikasi", onPressed: () => controller.storePedagang(), height: 50,)
                       ]
                   ),
                 ),

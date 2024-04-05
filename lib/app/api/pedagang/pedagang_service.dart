@@ -23,25 +23,30 @@ class PedagangService {
     }
   }
 
-  Future<Response> storePedagang(
-      String namaWarung,
-      String jamBuka,
-      String jamTutup,
-      String daerahDagang,
-      File banner,
-      File? sertifikathalal
-      ) async {
+  Future<Response> storePedagang(FormData formData) async {
     try {
-      final response = await _dioInstance.postRequest(
-          endpoint: '${ApiEndPoint.baseUrl}/image-verifikasi/store' ,
+      final response = await _dioInstance.postImageRequest(
+          endpoint: '${ApiEndPoint.baseUrl}/pedagang/store' ,
+          isAuthorize: true,
+          data: formData
+      );
+
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> storeJajanan(String pedagangId, String nama, String deskripsi, String harga, MultipartFile image) async {
+    try {
+      final response = await _dioInstance.postImageRequest(
+          endpoint: '${ApiEndPoint.baseUrl}/pedagang/$pedagangId/jajanan' ,
           isAuthorize: true,
           data: {
-            'nama_warung': namaWarung,
-            'jam_buka': jamBuka,
-            'jam_tutup': jamTutup,
-            'daerah_dagang': daerahDagang,
-            'banner': banner,
-            'dokumen_sertifikat_halal': sertifikathalal,
+            'nama': nama,
+            'deskripsi': deskripsi,
+            'harga': harga,
+            'image': image
           }
       );
 
