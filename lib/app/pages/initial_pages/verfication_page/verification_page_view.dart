@@ -234,7 +234,7 @@ class VerificationPageView extends GetView<VerificationPageController> {
                           children: [
                             Expanded(
                               child: InkWell(
-                                onTap: () => controller.pickImage(controller.filePathImage),
+                                onTap: () => controller.pickImage(controller.imagePathJajan),
                                 child: Container(
                                   height: 50,
                                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -252,8 +252,8 @@ class VerificationPageView extends GetView<VerificationPageController> {
 
                                       Obx(() => Flexible(
                                         child: Text(
-                                          controller.filePathImage.isNotEmpty ?
-                                          controller.filePathImage.value.split("/").last :
+                                          controller.imagePathJajan.isNotEmpty ?
+                                          controller.imagePathJajan.value.split("/").last :
                                               "Gambar"
                                           ,
                                           style: tsBodySmall.copyWith(fontWeight: FontWeight.w600, color: secondaryColor),

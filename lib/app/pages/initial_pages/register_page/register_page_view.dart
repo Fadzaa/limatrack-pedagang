@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_pedagang/app/pages/global_component/loading_overlay.dart';
 
 import '../../../../common/constant.dart';
 import '../../../../common/theme.dart';
@@ -16,107 +17,112 @@ class RegisterPageView extends GetView<RegisterPageController> {
     return Scaffold(
       backgroundColor: baseColor,
       body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Image.asset(logoSecondary)
-                ),
+          child: Obx(() =>
+              LoadingOverlay(
+                  isLoading: controller.isLoading.value,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Image.asset(logoSecondary)
+                          ),
 
-                const SizedBox(height: 20,),
+                          const SizedBox(height: 20,),
 
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Buat Akun dan Jadilah\nPedagang ",
-                        style: tsTitleMedium.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      TextSpan(
-                        text: "Bijak",
-                        style: tsTitleMedium.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: primaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "Buat Akun dan Jadilah\nPedagang ",
+                                  style: tsTitleMedium.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "Bijak",
+                                  style: tsTitleMedium.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: primaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
 
-                const SizedBox(height: 50,),
+                          const SizedBox(height: 50,),
 
-                CommonTextField(
-                    controller: controller.nameController,
-                    hintText: "Nama Lengkap",
-                    prefixIcon: icPersonOutline,
-                ),
+                          CommonTextField(
+                            controller: controller.nameController,
+                            hintText: "Nama Lengkap",
+                            prefixIcon: icPersonOutline,
+                          ),
 
-                CommonTextField(
-                  controller: controller.emailController,
-                  hintText: "Email",
-                  prefixIcon: icMail,
-                ),
+                          CommonTextField(
+                            controller: controller.emailController,
+                            hintText: "Email",
+                            prefixIcon: icMail,
+                          ),
 
-                CommonTextField(
-                  controller: controller.passwordController,
-                  hintText: "Kata Sandi",
-                  prefixIcon: icLockOutline,
-                  isObscure: true,
-                ),
+                          CommonTextField(
+                            controller: controller.passwordController,
+                            hintText: "Kata Sandi",
+                            prefixIcon: icLockOutline,
+                            isObscure: true,
+                          ),
 
-                CommonTextField(
-                  controller: controller.confirmPassController,
-                  hintText: "Konfirmasi Kata Sandi",
-                  prefixIcon: icLockOutline,
-                  isObscure: true,
-                ),
+                          CommonTextField(
+                            controller: controller.confirmPassController,
+                            hintText: "Konfirmasi Kata Sandi",
+                            prefixIcon: icLockOutline,
+                            isObscure: true,
+                          ),
 
-                const SizedBox(height: 25,),
-                
-                CommonButton(
-                    text: "Daftar Sekarang", onPressed: controller.validateForm, height: 45,
-                ),
-                
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  alignment: Alignment.center,
-                  child: Text("atau lanjutkan dengan", style: tsLabelLarge.copyWith(
-                    color: greyColor
-                  ),),
-                ),
+                          const SizedBox(height: 25,),
 
-                const CommonButtonGoogle(),
+                          CommonButton(
+                            text: "Daftar Sekarang", onPressed: () => controller.otpVerification(), height: 45,
+                          ),
 
-                const SizedBox(height: 30,),
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            alignment: Alignment.center,
+                            child: Text("atau lanjutkan dengan", style: tsLabelLarge.copyWith(
+                                color: greyColor
+                            ),),
+                          ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Punya Akun?", style: tsBodyMedium),
+                          const CommonButtonGoogle(),
 
-                    const SizedBox(width: 3,),
+                          const SizedBox(height: 30,),
 
-                    InkWell(
-                      onTap: () => Get.toNamed(Routes.LOGIN_PAGE),
-                      child: Text("Masuk", style: tsBodyMedium.copyWith(
-                        color: primaryColor,
-                        fontWeight: FontWeight.w600,
-                      ),),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Punya Akun?", style: tsBodyMedium),
+
+                              const SizedBox(width: 3,),
+
+                              InkWell(
+                                onTap: () => Get.toNamed(Routes.LOGIN_PAGE),
+                                child: Text("Masuk", style: tsBodyMedium.copyWith(
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.w600,
+                                ),),
+                              ),
+
+                            ],
+                          ),
+
+                          const Spacer(),
+
+
+                        ]
                     ),
-
-                  ],
-                ),
-
-                const Spacer(),
-
-
-              ]
-            ),
+                  )
+              )
           )
       ),
       resizeToAvoidBottomInset: false,

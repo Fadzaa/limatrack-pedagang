@@ -109,7 +109,6 @@ class CommonButtonOutline extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
           surfaceTintColor: Colors.white,
-          padding: const EdgeInsets.symmetric(vertical: 20),
           fixedSize: const Size(double.maxFinite, 50),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),

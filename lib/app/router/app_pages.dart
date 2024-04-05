@@ -28,7 +28,7 @@ class AppPages {
 
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.VERIFICATION_IMAGE_PAGE;
 
   static final routes = [
     GetPage(
