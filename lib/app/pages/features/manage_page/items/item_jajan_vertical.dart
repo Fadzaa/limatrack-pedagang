@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:limatrack_pedagang/app/api/pedagang/model/jajanan.dart';
 import 'package:limatrack_pedagang/common/constant.dart';
 
 import '../../../../../common/theme.dart';
 
 class ItemJajanVertical extends StatelessWidget {
-  const ItemJajanVertical({super.key});
+  const ItemJajanVertical({
+    super.key,
+    required this.jajanan
+  });
+
+  final Jajanan jajanan;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +53,7 @@ class ItemJajanVertical extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Telur Gulung", style: tsBodyMedium.copyWith(
+              Text(jajanan.nama ?? "", style: tsBodyMedium.copyWith(
                 fontWeight: FontWeight.w600
               )),
 
@@ -55,7 +61,7 @@ class ItemJajanVertical extends StatelessWidget {
                 children: [
                   SvgPicture.asset(icPriceTagSecondary),
                   const Gap(5),
-                  Text("Rp 10.000", style: tsBodySmall.copyWith(
+                  Text("${jajanan.harga ?? null}", style: tsBodySmall.copyWith(
                     color: secondaryColor,
                     fontWeight: FontWeight.w500
                   ))

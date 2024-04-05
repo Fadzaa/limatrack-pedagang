@@ -23,14 +23,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
   int _selectedIndex = 0;
 
   late AuthenticationService authenticationService;
-  late UserResponse userResponse;
-  UserModel? user;
+  UserResponse userResponse = UserResponse();
+  UserModel user = UserModel();
 
 
   @override
   void initState() {
     authenticationService = AuthenticationService();
-    userResponse = UserResponse();
 
 
     showCurrentUser();
@@ -61,10 +60,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
 
     final tabs =  [
-      HomePageView(user: user ?? UserModel()),
+      HomePageView(user: user ),
       const ManagePageView(),
       const ChatPageView(),
-      ProfilePageView(user: user ?? UserModel())
+      ProfilePageView(user: user )
     ];
 
     return Scaffold(
