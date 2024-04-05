@@ -37,17 +37,12 @@ class PedagangService {
     }
   }
 
-  Future<Response> storeJajanan(String pedagangId, String nama, String deskripsi, String harga, MultipartFile image) async {
+  Future<Response> storeJajanan(String pedagangId, FormData formData) async {
     try {
       final response = await _dioInstance.postImageRequest(
           endpoint: '${ApiEndPoint.baseUrl}/pedagang/$pedagangId/jajanan' ,
           isAuthorize: true,
-          data: {
-            'nama': nama,
-            'deskripsi': deskripsi,
-            'harga': harga,
-            'image': image
-          }
+          data: formData
       );
 
       return response;
@@ -56,5 +51,17 @@ class PedagangService {
     }
   }
 
+  Future<Response> showCurrentPedagang() async {
+    try {
+      final response = await _dioInstance.getRequest(
+          endpoint: '${ApiEndPoint.baseUrl}/pedagang/show-current' ,
+          isAuthorize: true,
+      );
+
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 
 }

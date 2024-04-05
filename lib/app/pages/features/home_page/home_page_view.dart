@@ -13,15 +13,17 @@ import 'items/item_pesanan_vertical.dart';
 import 'model/pesanan_data.dart';
 
 class HomePageView extends GetView<HomePageController> {
-  const HomePageView({
+  HomePageView({
     super.key,
-    required this.user
+    this.user
   });
 
-  final UserModel user;
+   UserModel? user;
 
   @override
   Widget build(BuildContext context) {
+
+    final userName = user!.namaLengkap;
 
     return Scaffold(
       body:  SafeArea(
@@ -41,7 +43,9 @@ class HomePageView extends GetView<HomePageController> {
                     )
                   ),
 
-                  ContainerStatus(name: user.namaLengkap)
+                  ContainerStatus(
+                      name: userName?? ""
+        )
 
                 ],
               ),

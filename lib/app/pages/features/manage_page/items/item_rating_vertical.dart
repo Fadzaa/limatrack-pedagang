@@ -14,7 +14,7 @@ class ItemRatingVertical extends StatelessWidget {
 
   final String name, image;
   final IconData iconCount;
-  final double count;
+  final dynamic  count;
 
   @override
   Widget build(BuildContext context) {
