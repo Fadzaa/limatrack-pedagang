@@ -28,7 +28,7 @@ class AppPages {
 
   AppPages._();
 
-  static const INITIAL = Routes.VERIFICATION_PAGE;
+  static const INITIAL = Routes.SPLASH_PAGE;
 
   static final routes = [
     GetPage(

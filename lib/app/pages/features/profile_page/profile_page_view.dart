@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_pedagang/app/api/auth/model/user.dart';
 import '../../../../common/constant.dart';
 import '../../../../common/theme.dart';
 import '../../../router/app_pages.dart';
@@ -8,7 +9,12 @@ import 'model/profile_data.dart';
 import 'profile_page_controller.dart';
 
 class ProfilePageView extends GetView<ProfilePageController> {
-  const ProfilePageView({super.key});
+  const ProfilePageView({
+    super.key,
+    required this.user
+  });
+
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +51,14 @@ class ProfilePageView extends GetView<ProfilePageController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Radya Harbani", style: tsBodyMedium.copyWith(
+                        Text(user.namaLengkap, style: tsBodyMedium.copyWith(
                           fontWeight: FontWeight.w600,
                           color: blackColor
                         ),),
 
                         const SizedBox(height: 5,),
 
-                        Text("radya@gmail.com", style: tsLabelLarge),
+                        Text(user.email, style: tsLabelLarge),
                       ],
                     ),
 

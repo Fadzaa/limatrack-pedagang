@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:limatrack_pedagang/app/api/auth/model/user.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/bottom_sheet/status_dagangan_bottom_sheet.dart';
-
 import 'package:limatrack_pedagang/app/pages/global_component/common_warning_box.dart';
 import '../../../../common/theme.dart';
 import 'home_page_controller.dart';
@@ -13,7 +13,12 @@ import 'items/item_pesanan_vertical.dart';
 import 'model/pesanan_data.dart';
 
 class HomePageView extends GetView<HomePageController> {
-  const HomePageView({super.key});
+  const HomePageView({
+    super.key,
+    required this.user
+  });
+
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +41,7 @@ class HomePageView extends GetView<HomePageController> {
                     )
                   ),
 
-                  const ContainerStatus()
+                  ContainerStatus(name: user.namaLengkap)
 
                 ],
               ),
@@ -156,7 +161,12 @@ class ContainerContent extends StatelessWidget {
 }
 
 class ContainerStatus extends GetView<HomePageController> {
-  const ContainerStatus({super.key});
+  const ContainerStatus({
+    super.key,
+    required this.name
+  });
+
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +214,7 @@ class ContainerStatus extends GetView<HomePageController> {
 
                             const SizedBox(height: 10,),
 
-                            Text(" RadyaHarbani👋", style: tsBodyMedium),
+                            Text(" $name👋", style: tsBodyMedium),
                           ],
                         ),
 
