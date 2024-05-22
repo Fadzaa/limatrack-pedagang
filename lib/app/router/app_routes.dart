@@ -13,6 +13,7 @@ abstract class Routes {
   static const VERIFICATION_PAGE = _Paths.VERIFICATION_PAGE;
   static const TAMBAH_JAJAN_PAGE = _Paths.TAMBAH_JAJAN_PAGE;
   static const VERIFICATION_HALAL_PAGE = _Paths.VERIFICATION_HALAL_PAGE;
+  static const EDUKASI_PEDAGANG_PAGE = _Paths.EDUKASI_PEDAGANG_PAGE;
 }
 
 abstract class _Paths {
@@ -28,4 +29,5 @@ abstract class _Paths {
   static const VERIFICATION_PAGE = '/verification-page';
   static const TAMBAH_JAJAN_PAGE = '/tambah-jajan-page';
   static const VERIFICATION_HALAL_PAGE = '/verification-halal-page';
+  static const EDUKASI_PEDAGANG_PAGE = '/edukasi-pedagang-page';
 }
