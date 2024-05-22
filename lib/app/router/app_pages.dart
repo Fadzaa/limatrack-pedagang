@@ -3,6 +3,8 @@ import 'package:limatrack_pedagang/app/pages/features/manage_page/manage_page_bi
 import 'package:limatrack_pedagang/app/pages/features/manage_page/manage_page_view.dart';
 import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/tambah_jajan_page_binding.dart';
 import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/tambah_jajan_page_view.dart';
+import 'package:limatrack_pedagang/app/pages/features/verifikasi_halal_page/verifikasi_halal_page_binding.dart';
+import 'package:limatrack_pedagang/app/pages/features/verifikasi_halal_page/verifikasi_halal_page_view.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_image.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_initial_view.dart';
 import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/pages/verification_page_success_view.dart';
@@ -24,17 +26,16 @@ import '../pages/initial_pages/splash_screen/splash_page_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  // static var routes;
 
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH_PAGE;
+  static const INITIAL = Routes.VERIFICATION_HALAL_PAGE;
 
   static final routes = [
     GetPage(
       name: _Paths.HOME_PAGE,
       page: () => BottomNavigation(),
-      bindings:  [
+      bindings: [
         HomePageBinding(),
         ManagePageBinding(),
         ChatPageBinding(),
@@ -94,6 +95,12 @@ class AppPages {
       name: _Paths.TAMBAH_JAJAN_PAGE,
       page: () => const TambahJajanPageview(),
       binding: TambahJajanPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.VERIFICATION_HALAL_PAGE,
+      page: () => const VerifikasiHalalPageView(),
+      binding: VerifikasiHalalPageBinding(),
       transition: Transition.noTransition,
     ),
   ];
