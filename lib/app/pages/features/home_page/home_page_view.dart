@@ -62,7 +62,9 @@ class ContainerContent extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          topLeft: Radius.circular(45),
+          topRight: Radius.circular(45),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

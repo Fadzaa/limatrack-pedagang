@@ -50,6 +50,7 @@ String icBookmarkProfile = '${svgImages}ic_bookmark_profile.svg';
 String icDarkMode = '${svgImages}ic_dark_mode.svg';
 String icPrivacy = '${svgImages}ic_privacy.svg';
 String icQuestion = '${svgImages}ic_question.svg';
+String ichalal = '${svgImages}ic_halal.svg';
 String noteVector = '${svgImages}note_vector.svg';
 String onboardFood = '${svgImages}onboard_food.svg';
 String onboardLocation = '${svgImages}onboard_location.svg';
@@ -58,3 +59,4 @@ String notFoundExplore = '${svgImages}not_found_explore.svg';
 String notFoundHistory = '${svgImages}not_found_history.svg';
 String vectorPelanggan = '${svgImages}pelanggan_vector.svg';
 String vectorRating = '${svgImages}rating_vector.svg';
+
