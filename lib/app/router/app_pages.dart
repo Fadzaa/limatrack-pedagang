@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:limatrack_pedagang/app/pages/features/edukasi_pedagang_page/edukasi_pedagang_page_binding.dart';
+import 'package:limatrack_pedagang/app/pages/features/edukasi_pedagang_page/edukasi_pedagang_page_view.dart';
 import 'package:limatrack_pedagang/app/pages/features/manage_page/manage_page_binding.dart';
 import 'package:limatrack_pedagang/app/pages/features/manage_page/manage_page_view.dart';
 import 'package:limatrack_pedagang/app/pages/features/tambah_jajan_page/tambah_jajan_page_binding.dart';
@@ -26,10 +28,9 @@ import '../pages/initial_pages/splash_screen/splash_page_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
-
   AppPages._();
 
-  static const INITIAL = Routes.VERIFICATION_HALAL_PAGE;
+  static const INITIAL = Routes.EDUKASI_PEDAGANG_PAGE;
 
   static final routes = [
     GetPage(
@@ -101,6 +102,12 @@ class AppPages {
       name: _Paths.VERIFICATION_HALAL_PAGE,
       page: () => const VerifikasiHalalPageView(),
       binding: VerifikasiHalalPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.EDUKASI_PEDAGANG_PAGE,
+      page: () => const EdukasiPedagangPageView(),
+      binding: EdukasiPedagangPageBinding(),
       transition: Transition.noTransition,
     ),
   ];
