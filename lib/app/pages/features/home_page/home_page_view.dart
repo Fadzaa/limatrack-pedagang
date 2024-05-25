@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:limatrack_pedagang/app/api/auth/model/user.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/bottom_sheet/status_dagangan_bottom_sheet.dart';
+import 'package:limatrack_pedagang/app/pages/global_component/bottom_sheet/zona_terlarang_bottom_sheet.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/common_warning_box.dart';
 import '../../../../common/theme.dart';
 import 'home_page_controller.dart';
@@ -198,31 +199,36 @@ class ContainerStatus extends GetView<HomePageController> {
                         ],
                       ),
                       const Gap(15),
-                      Container(
-                        height: 50,
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 14, vertical: 12),
-                        decoration: BoxDecoration(
-                          color: successColor.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.location_pin,
-                              color: successColor,
-                              size: 20,
-                            ),
-                            const Gap(10),
-                            Text(
-                              "Kamu Berada di Zona Aman",
-                              style: tsBodySmall.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  color: successColor),
-                            )
-                          ],
+                      InkWell(
+                        onTap: () {
+                          ZonaTerlarangBottomSheet(controller);
+                        },
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 12),
+                          decoration: BoxDecoration(
+                            color: successColor.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.location_pin,
+                                color: successColor,
+                                size: 20,
+                              ),
+                              const Gap(10),
+                              Text(
+                                "Kamu Berada di Zona Aman",
+                                style: tsBodySmall.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: successColor),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
