@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../../common/constant.dart';
 import '../../../common/theme.dart';
 
 class CommonWarningBox extends StatelessWidget {

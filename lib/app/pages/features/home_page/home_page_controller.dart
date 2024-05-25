@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class HomePageController extends GetxController {
   RxInt currentIndex = 0.obs;
@@ -19,6 +17,7 @@ class HomePageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+   
   }
 
   @override
@@ -26,9 +25,4 @@ class HomePageController extends GetxController {
     // TODO: implement dispose
     super.dispose();
   }
-
-
-
-
-
 }
