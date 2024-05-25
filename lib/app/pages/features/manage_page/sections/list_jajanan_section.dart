@@ -17,26 +17,24 @@ class ListJajananSection extends GetView<ManagePageController> {
       children: [
         Align(
             alignment: Alignment.topLeft,
-            child: Text("List Jajanan", style: tsBodyLarge.copyWith(
-                fontWeight: FontWeight.w600
-            ),)
+            child: Text(
+              "List Jajanan",
+              style: tsBodyLarge.copyWith(fontWeight: FontWeight.w600),
+            )),
+        const Gap(20),
+        Obx(
+          () => ListView.builder(
+              itemCount: controller.pedagangModel.value.jajanan?.length ?? 0,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) => ItemJajanVertical(
+                    jajanan: controller.pedagangModel.value.jajanan![index],
+                  )),
         ),
-
         const Gap(20),
-
-        Obx(() => ListView.builder(
-            itemCount: controller.pedagangModel.value.jajanan?.length ?? 0,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) => ItemJajanVertical(
-              jajanan: controller.pedagangModel.value.jajanan![index],
-            )
-        ),),
-
-        const Gap(20),
-
         InkWell(
-          onTap: () => Get.toNamed(Routes.TAMBAH_JAJAN_PAGE, arguments: controller.pedagangModel!),
+          onTap: () => Get.toNamed(Routes.TAMBAH_JAJAN_PAGE,
+              arguments: controller.pedagangModel),
           child: DottedBorder(
             color: greyColor.withOpacity(0.8),
             dashPattern: [8],
@@ -44,28 +42,24 @@ class ListJajananSection extends GetView<ManagePageController> {
             radius: const Radius.circular(10),
             child: Container(
                 height: 50,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10)
-                ),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(Icons.add, color: greyColor, size: 20),
-
-                      const SizedBox(width: 10,),
-
-                      Text("Tambah Jajanan", style: tsBodySmall.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: greyColor
-                      ),)
-                    ]
-                )
-            ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Tambah Jajanan",
+                        style: tsBodySmall.copyWith(
+                            fontWeight: FontWeight.w600, color: greyColor),
+                      )
+                    ])),
           ),
-
         )
-
       ],
     );
   }

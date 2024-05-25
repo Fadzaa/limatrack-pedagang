@@ -1,14 +1,8 @@
-import 'dart:io';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:limatrack_pedagang/app/pages/global_component/common_button.dart';
-import 'package:limatrack_pedagang/app/pages/global_component/common_textfield_secondary.dart';
 import 'package:limatrack_pedagang/app/pages/global_component/common_warning_box.dart';
-import 'package:limatrack_pedagang/app/pages/global_component/loading_overlay.dart';
-import 'package:limatrack_pedagang/app/pages/initial_pages/verfication_page/verification_page_view.dart';
 import '../../../../common/theme.dart';
 import 'verifikasi_halal_page_controller.dart';
 

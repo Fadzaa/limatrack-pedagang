@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -27,14 +26,41 @@ class HomePageView extends GetView<HomePageController> {
       child: Stack(
         children: [
           Container(
-              color: Colors.grey[200],
-              height: MediaQuery.of(context).size.height * 0.7,
-              child: GoogleMap(
-                initialCameraPosition: const CameraPosition(
-                  target: LatLng(-6.966667, 110.416664),
-                  zoom: 15,
+            color: Colors.grey[200],
+            height: MediaQuery.of(context).size.height * 0.7,
+            child: GoogleMap(
+              initialCameraPosition: const CameraPosition(
+                target: LatLng(-6.9821, 110.4522),
+                zoom: 15,
+              ),
+              circles: {
+                Circle(
+                  circleId: const CircleId("1"),
+                  center: const LatLng(-6.9840, 110.4480),
+                  radius: 200,
+                  fillColor: Colors.red.withOpacity(0.5),
+                  strokeWidth: 0,
                 ),
-              )),
+                Circle(
+                  circleId: const CircleId("2"),
+                  center: const LatLng(-6.9780, 110.4550),
+                  radius: 200,
+                  fillColor: Colors.red.withOpacity(0.5),
+                  strokeWidth: 0,
+                ),
+              },
+              markers: {
+                Marker(
+                  markerId: const MarkerId("1"),
+                  position: const LatLng(-6.9821, 110.4522),
+                  infoWindow: const InfoWindow(title: "Universitas Semarang"),
+                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueViolet,
+                  ),
+                ),
+              },
+            ),
+          ),
           ContainerStatus(name: userName ?? ""),
           DraggableScrollableSheet(
             initialChildSize: 0.20,
@@ -59,6 +85,7 @@ class ContainerContent extends StatelessWidget {
     DateTime now = DateTime.now().toLocal();
     String formattedDate = DateFormat('dd MMMM yyyy', 'id').format(now);
     return Container(
+      height: 850,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: const BoxDecoration(
         color: Colors.white,
