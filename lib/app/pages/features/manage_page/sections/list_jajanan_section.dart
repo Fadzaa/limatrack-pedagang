@@ -24,11 +24,11 @@ class ListJajananSection extends GetView<ManagePageController> {
         const Gap(20),
         Obx(
           () => ListView.builder(
-              itemCount: controller.pedagangModel.value.jajanan?.length ?? 0,
+              itemCount: controller.listJajanan.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => ItemJajanVertical(
-                    jajanan: controller.pedagangModel.value.jajanan![index],
+                    jajanan: controller.listJajanan[index],
                   )),
         ),
         const Gap(20),

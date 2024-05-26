@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:limatrack_pedagang/app/api/auth/authentication_service.dart';
 import 'package:limatrack_pedagang/app/api/auth/model/user.dart';
 import 'package:limatrack_pedagang/app/api/auth/model/user_response.dart';
@@ -31,39 +32,41 @@ class _BottomNavigationState extends State<BottomNavigation> {
   void initState() {
     authenticationService = AuthenticationService();
 
-
-    showCurrentUser();
+    if (Get.arguments != null) {
+      _selectedIndex = Get.arguments;
+    }
+    // showCurrentUser();
     super.initState();
   }
 
-  Future showCurrentUser () async {
-    try {
-
-      final response = await authenticationService.showCurrentUser();
-
-      userResponse = UserResponse.fromJson(response.data);
-
-
-      setState(() {
-        user = userResponse.data;
-      });
-
-      print(response.data);
-    } catch (e) {
-      print(e);
-    }
-
-  }
+  // Future showCurrentUser () async {
+  //   try {
+  //
+  //     final response = await authenticationService.showCurrentUser();
+  //
+  //     userResponse = UserResponse.fromJson(response.data);
+  //
+  //
+  //     setState(() {
+  //       user = userResponse.data;
+  //     });
+  //
+  //     print(response.data);
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  //
+  // }
 
 
   @override
   Widget build(BuildContext context) {
 
     final tabs =  [
-      HomePageView(user: user ),
+      HomePageView(),
       const ManagePageView(),
       const ChatPageView(),
-      ProfilePageView(user: user )
+      ProfilePageView()
     ];
 
     return Scaffold(

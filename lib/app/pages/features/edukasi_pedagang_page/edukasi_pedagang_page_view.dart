@@ -174,7 +174,7 @@ class EdukasiPedagangPageView extends GetView<EdukasiPedagangPageController> {
                               Text(
                                 "Perizinan Pedagang Kaki Lima",
                                 style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -272,7 +272,7 @@ class EdukasiPedagangPageView extends GetView<EdukasiPedagangPageController> {
                         ],
                       ),
                     ),
-                    SizedBox(height: height * 0.15),
+                    SizedBox(height: height * 0.05),
                     Container(
                       width: width * 0.4,
                       padding: EdgeInsets.symmetric(
@@ -289,13 +289,7 @@ class EdukasiPedagangPageView extends GetView<EdukasiPedagangPageController> {
                   ],
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: SvgPicture.asset(
-                  "assets/svg/sales_education.svg",
-                ),
-              ),
+
             ],
           ),
         ),

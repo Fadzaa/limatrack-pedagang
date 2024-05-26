@@ -15,6 +15,7 @@ class VerifikasiHalalPageView extends GetView<VerifikasiHalalPageController> {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
     return Scaffold(
+      backgroundColor: baseColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: AppBar(

@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:image_picker/image_picker.dart';
+import 'package:limatrack_pedagang/app/api/pedagang/model/jajanan.dart';
 import 'package:limatrack_pedagang/app/api/pedagang/model/pedagang.dart';
 import 'package:limatrack_pedagang/app/api/pedagang/pedagang_service.dart';
+import 'package:limatrack_pedagang/app/pages/features/manage_page/manage_page_controller.dart';
+import 'package:limatrack_pedagang/app/router/app_pages.dart';
 
 
 class TambahJajanPageController extends GetxController {
+  ManagePageController manageController = Get.put(ManagePageController());
+
   RxString filePathImage = ''.obs;
   PedagangService pedagangService = PedagangService();
   TextEditingController namaController = TextEditingController();
@@ -35,10 +40,22 @@ class TambahJajanPageController extends GetxController {
       await pedagangService.storeJajanan(
           arguments.value.id.toString(),
           formData
+      );
+
+      Jajanan jajanan = Jajanan(
+        nama: namaController.text,
+        deskripsi: deskripsiController.text,
+        harga: int.parse(hargaController.text),
+        kategori: 'Jajanan Utama',
+        image: filePathImage.value
 
       );
 
-      Get.back();
+      manageController.listJajanan.add(jajanan);
+
+      update();
+
+      Get.toNamed(Routes.HOME_PAGE, arguments: 1 );
       Get.snackbar("Tambah Jajan Sukses", "Berhasil menambahkan jajan!");
     } catch (e) {
       isLoading.value = true;

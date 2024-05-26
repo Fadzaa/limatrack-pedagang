@@ -9,9 +9,7 @@ import 'model/profile_data.dart';
 import 'profile_page_controller.dart';
 
 class ProfilePageView extends GetView<ProfilePageController> {
-  const ProfilePageView({super.key, required this.user});
-
-  final UserModel user;
+  const ProfilePageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +50,14 @@ class ProfilePageView extends GetView<ProfilePageController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            user.namaLengkap!,
+                            "Rio Hermawan",
                             style: tsBodyMedium.copyWith(
                                 fontWeight: FontWeight.w600, color: blackColor),
                           ),
                           const SizedBox(
                             height: 5,
                           ),
-                          Text(user.email!, style: tsLabelLarge),
+                          Text("rio@gmail.com", style: tsLabelLarge),
                         ],
                       ),
                       const Spacer(),
@@ -77,13 +75,13 @@ class ProfilePageView extends GetView<ProfilePageController> {
                           color: list_profile[index].color,
                           icon: list_profile[index].icon,
                           name: list_profile[index].name,
-                          routes: list_profile[index].name,
+                          routes: list_profile[index].routes,
                           isDarkMode: list_profile[index].isDarkMode)),
                   const SizedBox(
                     height: 30,
                   ),
                   ElevatedButton(
-                      onPressed: () => Get.toNamed(Routes.LOGIN_PAGE),
+                      onPressed: () => controller.logout(),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: dangerColor,
                           shape: RoundedRectangleBorder(
