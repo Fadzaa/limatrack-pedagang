@@ -13,13 +13,13 @@ import 'items/item_pesanan_vertical.dart';
 import 'model/pesanan_data.dart';
 
 class HomePageView extends GetView<HomePageController> {
-  HomePageView({super.key, this.user});
+  HomePageView({super.key});
 
-  UserModel? user;
+
 
   @override
   Widget build(BuildContext context) {
-    final userName = user!.namaLengkap;
+
 
     return Scaffold(
         body: SafeArea(
@@ -61,7 +61,7 @@ class HomePageView extends GetView<HomePageController> {
               },
             ),
           ),
-          ContainerStatus(name: userName ?? ""),
+          ContainerStatus(name: "Rio Hermawan"),
           DraggableScrollableSheet(
             initialChildSize: 0.20,
             minChildSize: 0.20,

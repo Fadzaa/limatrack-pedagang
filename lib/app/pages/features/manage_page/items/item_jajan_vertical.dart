@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -16,6 +18,17 @@ class ItemJajanVertical extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ImageProvider imageProvider;
+    if (jajanan.image != null) {
+      if (jajanan.image!.startsWith('https')) {
+        imageProvider = NetworkImage(jajanan.image!);
+      } else {
+        imageProvider = FileImage(File(jajanan.image!));
+      }
+    } else {
+      imageProvider = AssetImage('assets/images/default_image.png'); // replace with your default image asset
+    }
     return Container(
       height: 80,
       margin: const EdgeInsets.only(bottom: 10),
@@ -41,7 +54,7 @@ class ItemJajanVertical extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image:  DecorationImage(
-                image: NetworkImage(jajanan.image ?? ""),
+                image: imageProvider,
                 fit: BoxFit.cover
               )
             ),
